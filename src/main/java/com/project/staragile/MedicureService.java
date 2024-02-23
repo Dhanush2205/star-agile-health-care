@@ -14,7 +14,7 @@ public class MedicureService {
 		}
 
 	public Doctor createDoctor() {
-		Doctor doctor = new Doctor("MP1110","Shubham","Neurologist","15 Years");
+		Doctor doctor = new Doctor("MP1111","Shubham","Neurologist","20 Years");
 		return doctorRepository.save(doctor);
 	}
 
