@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthcare-eta-deploy
+  labels:
+    app: healthcare-eta-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: healthcare-eta-deploy
+  template:
+    metadata:
+      labels:
+        app: healthcare-eta-deploy
+    spec:
+      containers:
+      - name: healthcare-eta-container
+        image: dhanushbnaidu/healthcare-eta-deploy
+        ports:
+        - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthcare-eta-np-service
+  labels:
+    app: healthcare-eta-deploy
+spec:
+  selector:
+    app: healthcare-eta-deploy
+
+  type: NodePort
+  ports:
+  - nodePort: 31032    
+    port: 8082
+    targetPort: 8082
